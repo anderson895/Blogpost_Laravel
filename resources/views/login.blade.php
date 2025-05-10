@@ -9,7 +9,8 @@
 <body>
 
     <div class="login-container">
-        <form class="login-form">
+        <form class="login-form" method="POST" action="/login">
+            @csrf
             <h2>Login</h2>
 
             <div class="input-group">
@@ -23,6 +24,15 @@
             </div>
 
             <button type="submit">Login</button>
+            @if ($errors->any())
+                <div class="errors">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <p class="signup-link">Don't have an account? <a href="/register">Sign up</a></p>
         </form>
